@@ -1,0 +1,11 @@
+.header {
+    color: rgb(0, 255, 191);
+    
+    &__title {
+        
+            display: flex;
+            justify-content: center;
+            color: green;
+        
+    }
+}
