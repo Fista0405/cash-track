@@ -1,5 +1,4 @@
 import axios from "axios";
-import { constants } from "buffer";
 import { BASE_API_URL } from "constants/api.constants";
 import { Card, TExpenses } from "models/card.model";
 import HttpClient from "./generic.http";
@@ -15,6 +14,18 @@ class ExpensesHttp extends HttpClient {
     return data.map((item: TExpenses) => {
       return new Card(item);
     });
+  }
+  // Single Expense
+  public async getExpense(id: number): Promise<Card> {
+    const { data } = await axios.get(this.url(`/exspense/${id}`));
+
+    return new Card(data);
+  }
+
+  // Create Expense
+  public async createExpense(expenses: Card): Promise<Card> {
+    const { data } = await axios.post(this.url(`/expense`), expenses);
+    return new Card(data);
   }
 
   public async replaceExpenses({ id, ...expenses }: TExpenses): Promise<Card> {

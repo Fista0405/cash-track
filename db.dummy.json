@@ -1,42 +1,14 @@
 {
   "expense": [
     {
-      "id": 0,
-      "expenseCategory": "Hrana",
-      "expenseType": "Salata",
-      "amount": 100,
-      "date": "date format goes here"
-    },
-    {
-      "id": 1,
-      "expenseCategory": "Hrana",
-      "expenseType": "Salata",
-      "amount": 100,
-      "date": "date format goes here"
-    },
-    {
       "id": 2,
-      "expenseCategory": "Hrana",
+      "type": "Hrana",
       "expenseType": "Salata",
       "amount": 100,
       "date": "date format goes here"
     },
     {
       "id": 3,
-      "expenseCategory": "Hrana",
-      "expenseType": "Salata",
-      "amount": 100,
-      "date": "date format goes here"
-    },
-    {
-      "id": 4,
-      "expenseCategory": "Hrana",
-      "expenseType": "Salata",
-      "amount": 100,
-      "date": "date format goes here"
-    },
-    {
-      "id": 5,
       "expenseCategory": "Hrana",
       "expenseType": "Salata",
       "amount": 100,

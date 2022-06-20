@@ -1,45 +1,61 @@
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CustomModal from "components/CustomModal";
+import GenericModal from "components/GenericModal";
 import { ExpensesContext } from "context/expenses.context";
 import ExpensesHttp from "http/expenses.http";
 import { Card } from "models/card.model";
 import { MouseEvent, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import DetailView from "views/App/DetailViewPage";
 
 import "./index.scss";
 
 const ExpensesCard = ({ expenseCardData }: Props) => {
   const { expenses, setExpenses } = useContext(ExpensesContext);
-  const [expense, setExpense] = useState(expenseCardData);
-  const { id, expenseCategory, description, value, date } = expense;
+  const [expense] = useState(expenseCardData);
+  const { id, type, description, value, date } = expense;
   const expensesHttp = new ExpensesHttp();
-  const location = useNavigate();
+  const [isModalActive, setIsModalActive] = useState(false);
 
-  const deleteHandler = async (e: MouseEvent) => {
+  const openModalWindow = (e: MouseEvent) => {
     e.stopPropagation();
 
+    setIsModalActive(true);
+  };
+
+  const deleteHandler = async () => {
     const removeExpense = expenses.filter((expense) => expense.id !== id);
 
     await expensesHttp.deleteExpenses(id);
 
-    const updateState = await expensesHttp.updateExpenses({ id, expenses });
-    setExpense(updateState);
     setExpenses(removeExpense);
   };
 
   const navigateHandler = (e: MouseEvent) => {
     e.stopPropagation();
-    location("/obracun");
+    {
+      <GenericModal children={<DetailView />} />;
+    }
   };
 
   return (
-    <div className="expenses-card" onClick={navigateHandler}>
-      <FontAwesomeIcon icon={faTrash} onClick={deleteHandler} />
-      <h3>{expenseCategory}</h3>
-      <span>{description}</span>
-      <span>{value}</span>
-      <span>{date}</span>
-    </div>
+    <>
+      {isModalActive && (
+        <CustomModal onConfirm={deleteHandler} stateHandler={setIsModalActive}>
+          <h2>Delete item?</h2>
+        </CustomModal>
+      )}
+      <div className="expenses-card" onClick={navigateHandler}>
+        <GenericModal children={<DetailView />} />
+
+        <FontAwesomeIcon icon={faTrash} onClick={openModalWindow} />
+        <FontAwesomeIcon icon={faPencil} onClick={deleteHandler} />
+        <h3>{type}</h3>
+        <span>{description}</span>
+        <span>{value}</span>
+        <span>{date}</span>
+      </div>
+    </>
   );
 };
 

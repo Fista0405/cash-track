@@ -1,0 +1,28 @@
+.modal-containter {
+  position: fixed;
+  display: flex;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(200, 200, 200, 0.5);
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 400px;
+  min-height: 200px;
+  padding: 15px;
+  border-radius: 5px;
+  align-items: center;
+  background-color: white;
+
+  &__buttons {
+    display: flex;
+    margin-top: auto;
+  }
+}

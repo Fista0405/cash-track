@@ -1,14 +1,17 @@
 import ExpensesList from "components/ExpensesList";
+import FormComponent from "components/FormComponent";
+import GenericModal from "components/GenericModal";
 import NavBar from "components/NavBar";
-import { ExpensesProvider } from "context/expenses.context";
 import ExpensesHttp from "http/expenses.http";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { ExpensesContext } from "context/expenses.context";
+import { useCallback, useContext, useEffect, useMemo } from "react";
 import { Route, Routes } from "react-router-dom";
-import ObracunPage from "./HomePage";
+
 import "./index.scss";
+import DetailView from "./DetailViewPage";
 
 const App = () => {
-  const [expenses, setExpenses] = useState([]);
+  const { expenses, setExpenses } = useContext(ExpensesContext);
 
   const expensesData = useMemo(() => new ExpensesHttp(), []);
 
@@ -28,7 +31,7 @@ const App = () => {
   ];
 
   return (
-    <ExpensesProvider>
+    <>
       <header className="header">
         <h1 className="header__title">Cash Track App</h1>
       </header>
@@ -36,10 +39,11 @@ const App = () => {
         <NavBar items={navBarItems}></NavBar>
         <Routes>
           <Route path="/" element={<ExpensesList expenses={expenses} />} />
-          <Route path="/obracun" element={<ObracunPage />} />
         </Routes>
+        <FormComponent />
+        <GenericModal children={<DetailView />} />
       </main>
-    </ExpensesProvider>
+    </>
   );
 };
 

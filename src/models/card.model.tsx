@@ -1,14 +1,22 @@
+export enum ExpenseType {
+  FOOD = "Hrana",
+  UTILITIES = "Režije",
+  TRANSPORT = "Prijevoz",
+  CLOTHING = "Odjeća",
+  OTHERS = "Ostalo",
+}
+
 export type TExpenses = {
   id: number;
-  expenseCategory: string; //expense type with values FOOD, UTILITIES, TRANSPORT, CLOTHING, OTHER
-  description: string; //string message describing the expense
-  value: number; //number displaying the value of the expense
+  type: ExpenseType;
+  description: string;
+  value: number;
   date: string;
 };
 
 export class Card {
   id: number;
-  expenseCategory: string;
+  type: ExpenseType;
   description: string;
   value: number;
   date: string;
@@ -16,7 +24,7 @@ export class Card {
 
   constructor(item: TExpenses) {
     this.id = item.id;
-    this.expenseCategory = item.expenseCategory;
+    this.type = item.type;
     this.description = item.description;
     this.value = item.value;
     this.date = item.date;

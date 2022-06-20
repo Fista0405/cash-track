@@ -1,7 +1,7 @@
 import { Card } from "models/card.model";
-import React, { useState } from "react";
+import { createContext, useState } from "react";
 
-const ExpensesContext = React.createContext({
+const ExpensesContext = createContext({
   expenses: [],
   setExpenses: (expenses: Card[]) => {},
 });
