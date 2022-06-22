@@ -1,14 +1,14 @@
-import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CustomModal from "components/CustomModal";
-import GenericModal from "components/GenericModal";
+import GenericModal from "components/Modals/GenericModal";
+import DeleteModal from "components/Modals/DeleteModal";
 import { ExpensesContext } from "context/expenses.context";
 import ExpensesHttp from "http/expenses.http";
 import { Card } from "models/card.model";
 import { MouseEvent, useContext, useState } from "react";
-import DetailView from "views/App/DetailViewPage";
 
 import "./index.scss";
+import EditPage from "views/App/EditPage";
 
 const ExpensesCard = ({ expenseCardData }: Props) => {
   const { expenses, setExpenses } = useContext(ExpensesContext);
@@ -34,22 +34,21 @@ const ExpensesCard = ({ expenseCardData }: Props) => {
   const navigateHandler = (e: MouseEvent) => {
     e.stopPropagation();
     {
-      <GenericModal children={<DetailView />} />;
+      <GenericModal children={<EditPage />} />;
     }
   };
 
   return (
     <>
       {isModalActive && (
-        <CustomModal onConfirm={deleteHandler} stateHandler={setIsModalActive}>
+        <DeleteModal onConfirm={deleteHandler} stateHandler={setIsModalActive}>
           <h2>Delete item?</h2>
-        </CustomModal>
+        </DeleteModal>
       )}
       <div className="expenses-card" onClick={navigateHandler}>
-        <GenericModal children={<DetailView />} />
+        <GenericModal children={<EditPage />} />
 
         <FontAwesomeIcon icon={faTrash} onClick={openModalWindow} />
-        <FontAwesomeIcon icon={faPencil} onClick={deleteHandler} />
         <h3>{type}</h3>
         <span>{description}</span>
         <span>{value}</span>

@@ -1,0 +1,30 @@
+.input-field {
+  &__label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  &__input {
+    display: flex;
+    border-bottom: 2px solid green;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    background-color: inherit;
+  }
+
+  &__error {
+    display: block;
+    visibility: hidden;
+    height: 26px;
+  }
+}
+
+.submitted {
+  .input-field__error {
+    visibility: unset;
+  }
+}

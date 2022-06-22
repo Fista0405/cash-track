@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { cloneElement, useState } from "react";
 import Modal from "react-modal";
 
 const customStyles = {
@@ -15,36 +17,34 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 function GenericModal({ children }: Props) {
-  // let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   function openModal() {
     setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // subtitle.style.color = "#f00";
   }
 
   function closeModal() {
     setIsOpen(false);
   }
 
+  function toggleEdit() {
+    setIsDisabled(!isDisabled);
+  }
+
+  const content = cloneElement(children, isDisabled);
   return (
     <div>
-      <button onClick={openModal}>Open Modal</button>
+      <FontAwesomeIcon icon={faStar} onClick={openModal} />
+      {/* <button onClick={openModal}>Open Modal</button>  */}
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
       >
-        {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
+        {content}
         <button onClick={closeModal}>close</button>
-
-        {children}
+        <button onClick={toggleEdit}>Edit</button>
       </Modal>
     </div>
   );

@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import "./index.scss";
 
-const CustomModal = ({ children, onConfirm, stateHandler }: Props) => {
+const DeleteModal = ({ children, onConfirm, stateHandler }: Props) => {
   const modalContainer = document.getElementById("modal-containter");
 
   document.body.style.overflow = "hidden";
@@ -43,4 +43,4 @@ type Props = {
   stateHandler: Function;
 };
 
-export default CustomModal;
+export default DeleteModal;
