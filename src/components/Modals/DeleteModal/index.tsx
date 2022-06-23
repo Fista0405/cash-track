@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import "./index.scss";
 
-const DeleteModal = ({ children, onConfirm, stateHandler }: Props) => {
+const DeleteModal = ({ children, stateHandler }: Props) => {
   const modalContainer = document.getElementById("modal-containter");
 
   document.body.style.overflow = "hidden";
@@ -12,12 +12,6 @@ const DeleteModal = ({ children, onConfirm, stateHandler }: Props) => {
     stateHandler(false);
   };
 
-  const confirmActionHandler = async () => {
-    await onConfirm();
-
-    closeModal();
-  };
-
   const modalWindow = (
     <div className="modal-containter" onClick={closeModal}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -25,9 +19,6 @@ const DeleteModal = ({ children, onConfirm, stateHandler }: Props) => {
         <div className="modal__buttons">
           <button type="button" onClick={closeModal}>
             Cancel
-          </button>
-          <button type="button" onClick={confirmActionHandler}>
-            Confirm
           </button>
         </div>
       </div>
@@ -39,7 +30,6 @@ const DeleteModal = ({ children, onConfirm, stateHandler }: Props) => {
 
 type Props = {
   children: any;
-  onConfirm: Function;
   stateHandler: Function;
 };
 

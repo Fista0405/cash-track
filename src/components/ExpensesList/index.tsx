@@ -6,7 +6,7 @@ import "./index.scss";
 const ExpensesList = ({ expenses }: Props) => {
   const content = expenses.map((item: TExpenses) => {
     return (
-      <li>
+      <li key={item.id}>
         <ExpensesCard expenseCardData={new Card(item)}></ExpensesCard>
       </li>
     );

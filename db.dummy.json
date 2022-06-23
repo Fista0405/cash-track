@@ -1,45 +1,44 @@
 {
   "expense": [
     {
-      "id": 0,
-      "type": "Hrana",
-      "expenseType": "Salata",
-      "amount": 100,
-      "date": "date format goes here"
+      "name": "xyz",
+      "id": 2
     },
     {
-      "id": 1,
-      "type": "Hrana",
-      "expenseType": "Salata",
-      "amount": 100,
-      "date": "date format goes here"
+      "type": "Informat",
+      "id": 9
     },
     {
-      "id": 2,
-      "type": "Hrana",
-      "expenseType": "Salata",
-      "amount": 100,
-      "date": "date format goes here"
+      "type": "Informat",
+      "id": 10
     },
     {
-      "name": "asdf",
-      "id": 3
+      "type": "Informat",
+      "id": 11
     },
     {
-      "name": "asdf",
-      "id": 4
+      "type": "Informat",
+      "id": 12
     },
     {
-      "name": "sdf",
-      "id": 5
+      "type": "Informat",
+      "id": 14
     },
     {
-      "name": "d",
-      "id": 6
+      "type": "Informat",
+      "id": 15
     },
     {
-      "name": "x",
-      "id": 7
+      "type": "Informat",
+      "id": 16
+    },
+    {
+      "type": "adf",
+      "id": 17
+    },
+    {
+      "type": "a",
+      "id": 18
     }
   ]
 }

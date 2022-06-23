@@ -1,6 +1,6 @@
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { cloneElement, useState } from "react";
+import { useState } from "react";
 import Modal from "react-modal";
 
 const customStyles = {
@@ -14,11 +14,8 @@ const customStyles = {
   },
 };
 
-Modal.setAppElement("#root");
-
-function GenericModal({ children }: Props) {
+function GenericModal({ children, onConfirm }: Props) {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
 
   function openModal() {
     setIsOpen(true);
@@ -28,23 +25,28 @@ function GenericModal({ children }: Props) {
     setIsOpen(false);
   }
 
-  function toggleEdit() {
-    setIsDisabled(!isDisabled);
-  }
+  const confirmActionHandler = async () => {
+    await onConfirm();
 
-  const content = cloneElement(children, isDisabled);
+    closeModal();
+  };
+
   return (
     <div>
-      <FontAwesomeIcon icon={faStar} onClick={openModal} />
-      {/* <button onClick={openModal}>Open Modal</button>  */}
+      <FontAwesomeIcon size="2x" icon={faTrash} onClick={openModal} />
+
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
+        contentLabel="Example Modal"
       >
-        {content}
+        {children}
         <button onClick={closeModal}>close</button>
-        <button onClick={toggleEdit}>Edit</button>
+        <button type="button" onClick={confirmActionHandler}>
+          Confirm
+        </button>
+        <div>I am a modal</div>
       </Modal>
     </div>
   );
@@ -52,6 +54,7 @@ function GenericModal({ children }: Props) {
 
 type Props = {
   children: any;
+  onConfirm?: Function;
 };
 
 export default GenericModal;

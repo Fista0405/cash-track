@@ -1,32 +1,37 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 import Form from "components/Form";
 import InputField from "components/InputField";
+import { ExpensesContext } from "context/expenses.context";
 import { FormContext } from "context/form.context";
 import ExpensesHttp from "http/expenses.http";
 import { Card } from "models/card.model";
-import { MouseEvent, useContext } from "react";
+import { useContext } from "react";
 import { validators } from "utils/generic.util";
 
 const EditPage = () => {
-  const { setDisabled } = useContext(FormContext);
-
+  const { disabled, setDisabled, isDisabled } = useContext(FormContext);
+  const { setExpenses } = useContext(ExpensesContext);
   const expensesHttp = new ExpensesHttp();
 
   const submitHandler = async (data: Card) => {
     await expensesHttp.createExpense(data);
+    setExpenses(await expensesHttp.getExpenses());
   };
 
   const toggleEdit = () => {
-    setDisabled((prevDisabled: any) => !prevDisabled);
+    setDisabled((disabled: boolean) => !disabled);
+
+    console.log({ disabled, setDisabled, isDisabled });
   };
 
   return (
-    <Form onSubmit={submitHandler} isDisabled={() => toggleEdit}>
+    <Form onSubmit={submitHandler} isDisabled={false}>
       <InputField
         icon={faUser}
         label="first name"
         formControl={[
-          "name",
+          "type",
           validators({
             required: true,
             maxLength: 10,
@@ -36,8 +41,8 @@ const EditPage = () => {
         <input type="text" placeholder="first name" />
       </InputField>
       <button>Submit</button>
-      <button type="button" onClick={toggleEdit}>
-        Edit Mode
+      <button onClick={toggleEdit} type="button">
+        Toggle Edit Mode
       </button>
     </Form>
   );

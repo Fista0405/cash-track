@@ -20,7 +20,6 @@ export class Card {
   description: string;
   value: number;
   date: string;
-  map: Card;
 
   constructor(item: TExpenses) {
     this.id = item.id;

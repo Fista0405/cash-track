@@ -1,12 +1,10 @@
-import { CustomFormProvider, FormContext } from "context/form.context";
+import { CustomFormProvider } from "context/form.context";
 import { useForm } from "react-hook-form";
 import { createClass } from "utils/generic.util";
 
 const Form = ({ children, onSubmit, isDisabled }: Props) => {
   const methods = useForm();
-
   const classes = createClass({ submitted: methods.formState.isSubmitted });
-
   //   methods.formState.isSubmitted ? "submitted" : ""
 
   return (
