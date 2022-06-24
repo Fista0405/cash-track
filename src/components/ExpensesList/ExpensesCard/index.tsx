@@ -51,7 +51,7 @@ const ExpensesCard = ({ expenseCardData }: Props) => {
           stateHandler={setIsConfirmationModalActive}
           onConfirm={deleteHandler}
         >
-          <h2>Confirmation Modal Test</h2>
+          <h2>Are you sure you want to delete {type}?</h2>
         </ConfirmationModal>
       )}
 

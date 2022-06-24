@@ -19,7 +19,7 @@ const ConfirmationModal = ({ children, onConfirm, stateHandler }: Props) => {
   };
 
   const modalWindow = (
-    <div className="modal-containter" onClick={closeModal}>
+    <div className="modal-container" onClick={closeModal}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         {children}
         <div className="modal__buttons">
