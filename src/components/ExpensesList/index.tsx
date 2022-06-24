@@ -1,4 +1,3 @@
-import Select from "components/FormComponent";
 import { Card, TExpenses } from "models/card.model";
 import ExpensesCard from "./ExpensesCard";
 import "./index.scss";

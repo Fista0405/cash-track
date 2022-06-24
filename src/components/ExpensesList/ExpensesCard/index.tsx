@@ -1,12 +1,12 @@
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import DeleteModal from "components/Modals/DeleteModal";
-import GenericModal from "components/Modals/GenericModal";
+import ExpensesForm from "components/ExpensesForm";
+import ConfirmationModal from "components/Modals/ConfirmationModal";
+import Modal from "components/Modals/Modal";
 import { ExpensesContext } from "context/expenses.context";
 import ExpensesHttp from "http/expenses.http";
 import { Card } from "models/card.model";
 import { MouseEvent, useContext, useState } from "react";
-import EditPage from "views/App/EditPage";
 
 import "./index.scss";
 
@@ -17,7 +17,8 @@ const ExpensesCard = ({ expenseCardData }: Props) => {
   const expensesHttp = new ExpensesHttp();
 
   const [isModalActive, setIsModalActive] = useState(false);
-  const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
+  const [isConfirmationModalActive, setIsConfirmationModalActive] =
+    useState(false);
 
   const openModalWindow = (e: MouseEvent) => {
     e.stopPropagation();
@@ -25,14 +26,13 @@ const ExpensesCard = ({ expenseCardData }: Props) => {
     setIsModalActive(true);
   };
 
-  const openDeleteModalWindow = (e: MouseEvent) => {
+  const openConfirmationModalWindow = (e: MouseEvent) => {
     e.stopPropagation();
 
-    setIsDeleteModalActive(true);
+    setIsConfirmationModalActive(true);
   };
 
-  const deleteHandler = async (e: MouseEvent) => {
-    e.stopPropagation();
+  const deleteHandler = async () => {
     const removeExpense = expenses.filter((expense) => expense.id !== id);
 
     await expensesHttp.deleteExpenses(id);
@@ -43,13 +43,20 @@ const ExpensesCard = ({ expenseCardData }: Props) => {
   return (
     <>
       {isModalActive && (
-        <DeleteModal stateHandler={setIsModalActive}>
-          {<EditPage />}
-        </DeleteModal>
+        <Modal stateHandler={setIsModalActive}>{<ExpensesForm />}</Modal>
       )}
 
-      <div className="expenses-card" onClick={openDeleteModalWindow}>
-        <GenericModal children={undefined} onConfirm={deleteHandler} />
+      {isConfirmationModalActive && (
+        <ConfirmationModal
+          stateHandler={setIsConfirmationModalActive}
+          onConfirm={deleteHandler}
+        >
+          <h2>Confirmation Modal Test</h2>
+        </ConfirmationModal>
+      )}
+
+      <div className="expenses-card" onClick={openModalWindow}>
+        <FontAwesomeIcon icon={faTrash} onClick={openConfirmationModalWindow} />
         <h3>{type}</h3>
         <span>{description}</span>
         <span>{value}</span>

@@ -1,0 +1,22 @@
+.modal-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(200, 200, 200, 0.5);
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 450px;
+  min-height: 225px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+}

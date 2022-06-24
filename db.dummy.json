@@ -1,44 +1,42 @@
 {
   "expense": [
     {
-      "name": "xyz",
-      "id": 2
+      "type": "Hrana",
+      "description": "Kruh, Mlijeko",
+      "id": 20
     },
     {
-      "type": "Informat",
-      "id": 9
+      "type": "Struja",
+      "description": "Hep",
+      "id": 21
     },
     {
-      "type": "Informat",
-      "id": 10
+      "type": "Pričuva",
+      "description": "Novi Dani d.o.o.",
+      "id": 23
     },
     {
-      "type": "Informat",
-      "id": 11
+      "type": "Pričuva",
+      "description": "",
+      "id": 24
     },
     {
-      "type": "Informat",
-      "id": 12
+      "type": "Frane",
+      "description": "Opis",
+      "value": "Broj",
+      "id": 25
     },
     {
-      "type": "Informat",
-      "id": 14
+      "type": "Hrana",
+      "description": "",
+      "value": "50",
+      "id": 26
     },
     {
-      "type": "Informat",
-      "id": 15
-    },
-    {
-      "type": "Informat",
-      "id": 16
-    },
-    {
-      "type": "adf",
-      "id": 17
-    },
-    {
-      "type": "a",
-      "id": 18
+      "type": "Kruh",
+      "description": "",
+      "value": "12",
+      "id": 27
     }
   ]
 }

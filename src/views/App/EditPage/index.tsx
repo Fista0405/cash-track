@@ -20,16 +20,16 @@ const EditPage = () => {
   };
 
   const toggleEdit = () => {
-    setDisabled((disabled: boolean) => !disabled);
+    isDisabled((disabled: any) => !disabled);
 
-    console.log({ disabled, setDisabled, isDisabled });
+    console.log({ setDisabled, disabled });
   };
 
   return (
     <Form onSubmit={submitHandler} isDisabled={false}>
       <InputField
         icon={faUser}
-        label="first name"
+        label="type"
         formControl={[
           "type",
           validators({
